@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 import ConvexClientProvider from "../providers/ConvexClientProvider";
+import { ModalProvider } from "@/providers/modal-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ConvexClientProvider>
           {" "}
+          <ModalProvider />
           <Toaster /> {children}
         </ConvexClientProvider>
       </body>
