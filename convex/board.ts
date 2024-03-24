@@ -129,3 +129,15 @@ export const unfavorite = mutation({
     return board;
   },
 });
+
+export const getFavorites = query({
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+    const boards = await ctx.db.query("userFavorites").collect();
+    return boards;
+  },
+});

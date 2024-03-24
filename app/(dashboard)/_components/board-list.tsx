@@ -7,6 +7,7 @@ import { EmptySearch } from "./empty-search";
 import { api } from "@/convex/_generated/api";
 import { BoardCard } from "./board-card";
 import { NewBoardButton } from "./new-board-button";
+import { useEffect } from "react";
 
 interface BoardListProps {
   orgId: string;
@@ -18,6 +19,9 @@ interface BoardListProps {
 
 export default function BoardList({ orgId, query }: BoardListProps) {
   let data = useQuery(api.boards.get, { orgId });
+  let userFavoritesBoards = useQuery(api.board.getFavorites, {});
+  // useEffect(() => console.log(userFavoritesBoards), []);
+
   if (data === undefined)
     return (
       <div>
